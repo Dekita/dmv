@@ -1,5 +1,5 @@
 // ============================================================================
-// Plug-in: DMV_MapMenuButtons.js 
+// Plug-in: DMV_Stat_ParamDistribute.js 
 // Version: 1.0.0
 // Author: David Bow (Dekita) 
 // MailTo: dekita@dekyde.com
