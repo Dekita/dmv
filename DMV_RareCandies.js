@@ -79,7 +79,7 @@
 })();
 
 /**
- * Game_Actor.prototype functions and variables
+ * Anonomous function to keep everything in scope
  */
 (function(){
   /**
