@@ -1,6 +1,6 @@
 // ============================================================================
 // Plug-in: DMV_Core.js 
-// Version: 1.0.0
+// Version: 1.0.1
 // Author: David Bow (Dekita) 
 // MailTo: dekita@dekyde.com
 // ============================================================================
@@ -60,6 +60,12 @@
  * You can get the latest versions of my Mv plugins from www.dekyde.com/DMV
  * 
  * ============================================================================
+ * ■ Change Log:
+ * ============================================================================
+ * v.1.0.1 - Added Function: DMV.isScene(sceneClass),
+ * v.1.0.0 - Initial Release,
+ * 
+ * ============================================================================
  *  www.dekyde.com
  * ============================================================================
  */ 
@@ -76,8 +82,8 @@
     throw new Error(strA + strB + strC + strD);
   }else{
     var name = "DMV_Core";
-    var vers = "1.0.0";
-    var date = "23/1o/2o15";
+    var vers = "1.0.1";
+    var date = "16/11/2o15";
     var desc = "DMV plugins by dekita @ www.dekyde.com"
     var auth = {name:"David Bow (Dekita)",
       email:"dekita@dekyde.com",website:"www.dekyde.com",
@@ -228,7 +234,6 @@ var DMV = MVC.extend();
     return Function(str).bind(objekt);
   };
 
-
   /**
    * DMV.register(pluginName, pluginVer, date, reqr, exit)
    * @param pluginName the plugin name to br registered
@@ -281,8 +286,7 @@ var DMV = MVC.extend();
     button.setHotFrame(icon2%16*bw, Math.floor(icon2/16)*bh ,bw, bh);
     if (parent != undefined && parent.addChild){
       parent.addChild(button);
-    }
-    button.visible = true;
+    };button.visible = true;
     return button;
   };
 
@@ -380,6 +384,16 @@ var DMV = MVC.extend();
    **////////////////////////////////////////
 
   /**
+   * DMV.isScene(sceneClass)
+   * @param sceneClass the class to check for
+   * @return true if the current class is sceneClass
+   */
+  $.isScene = function(sceneClass){
+    var scene = SceneManager._scene;
+    return scene && scene.constructor === sceneClass;
+  };
+
+  /**
    * DMV.Sprite
    * Container to hold my custom sprite classes
    */
@@ -412,7 +426,7 @@ var DMV = MVC.extend();
   /**
    * DMV.Sprite.TogButton.prototype functions
    */
-  (function(butt){
+  (function (butt){
     /**
      * DMV.Sprite.TogButton.prototype.initialize(bitmap)
      * Initiailizes toggle button sprite.
@@ -420,7 +434,9 @@ var DMV = MVC.extend();
      */
     butt.initialize = function(/* bitmap */){
       Sprite_Button.prototype.initialize.call(this);
-      if (arguments[0]){this.bitmap = arguments[0]};
+      if (arguments[0]){
+        this.bitmap = arguments[0];
+      };
       this._dmv_toggled = false;
       this.update();
     };
