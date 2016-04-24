@@ -8,7 +8,7 @@
 /*:
  * @author Dekita (www.dekyde.com)
  * 
- * @plugindesc This plugin simply creates a small HP inspired by Zelda.
+ * @plugindesc This plugin simply creates a small HP HUD inspired by Zelda.
  * 
  * @help
  * ============================================================================
