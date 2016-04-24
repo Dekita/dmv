@@ -1,6 +1,6 @@
 // ============================================================================
 // Plug-in: DMV_ScreenshotDownloader.js 
-// Version: 1.0.0
+// Version: 1.0.1
 // Author: David Bow (Dekita) 
 // MailTo: dekita@dekyde.com
 // ============================================================================
@@ -20,7 +20,7 @@
  * 
  * Please do note: This only works in web browsers. 
  * If you require being able to take screenshots during a windows/mac
- * version of the game, you would beed an alternative plugin. 
+ * version of the game, you would need an alternative plugin. 
  * Hudell has written one to do this. 
  * 
  * ============================================================================
@@ -61,6 +61,13 @@
  * You can get the latest versions of my Mv plugins from www.dekyde.com/DMV
  * 
  * ============================================================================
+ * ■ Change Log:
+ * ============================================================================
+ * v.1.0.1 - Fixed some simple typing errors within the documentation,
+ *         - Removed dependancy on DMV Core;
+ * v.1.0.0 - Initial Release,
+ * 
+ * ============================================================================
  *  www.dekyde.com
  * ============================================================================
  */ 
@@ -69,14 +76,14 @@
  * Checks to ensure DMV Core plugin exists. 
  */
 (function(){
-  if (typeof DMV === 'undefined') {
-    var strA = "You need to install the DMV_Core plugin ";
-    var strB = "in order for other DMV plugins to work!";
-    throw new Error(strA + strB);
-  }else{
-    DMV.register("ScreenshotDownloader", "1.0.0");
+  if (typeof DMV !== 'undefined') {
+    DMV.register("ScreenshotDownloader", "1.0.1","24/04/2o16");
   }
 })();
+
+function ScreenshotDownloader() {
+  throw new Error('ScreenshotDownloader is a static class!!');
+};
 
 /**
  * 
@@ -96,30 +103,30 @@
   };
 
   /**
-   * getFilename
+   * ScreenshotDownloader.getFilename
    * @return {string} a generated filename using timestamp.
    */
-  function getFilename() {
+  $.getFilename = function() {
     return 'Screenshot_' + Date.now() + '.png';
   };
 
   /**
-   * getImageData
+   * ScreenshotDownloader.getImageData
    * @return {string} containing the image data.
    */
-  function getImageData() {
+  $.getImageData = function() {
     var image = SceneManager.snap()._canvas.toDataURL();
-    return image.replace(/^data:image\/png;base64,/, "");
+    return image.replace(/^data:image\/png;base64,/,"");
   };
   
   /**
-   * downloadScreenshot(filename, text)
+   * ScreenshotDownloader.downloadScreenshot(filename, text)
    * @param filename {string} the filename for the new file.
    * @param text {string} the text data to save into the file.
    * Creates an element in the document to download the file
    * and then triggers it, and removes it from the document.
    */
-  function downloadScreenshot(filename, text) {
+  $.downloadScreenshot = function(filename, text) {
     var mime = 'data:image/png;base64,';
     var data = encodeURIComponent(text);
     var element = document.createElement('a');
@@ -132,20 +139,21 @@
   };
 
   /**
-   * DMV.downloadScreenshot
-   * Takes current screenshot and triggers download.
+   * ScreenshotDownloader.screenshotKeyPressed
+   * Called automatically when the screenshot key is pressed.
+   * Attempts to take current screenshot and trigger download.
    */
-  $.downloadScreenshot = function(){
+  $.screenshotKeyPressed = function() {
     try {
       if (!Utils.isNwjs()){
-        downloadScreenshot(getFilename(), getImageData());
+        $.downloadScreenshot(getFilename(), getImageData());
       };
     } catch(error) {
       if (error !== undefined && error !== null) {
         console.error('An error occured while saving the screenshot:', error);
       };
     };
-  };
+  }
 
   /**
    * onKeyUp
@@ -158,14 +166,14 @@
   Input._onKeyUp = function(event){
     onKeyUp.apply(this, arguments);
     if (event.keyCode == 44){
-      $.downloadScreenshot();
+      $.screenshotKeyPressed();
     };
   };
 
   /**
    * End Declarations
    */
-})(DMV);
+})(ScreenshotDownloader);
 /**
  * End plugin
  * www.dekyde.com

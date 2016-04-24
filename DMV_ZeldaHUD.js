@@ -29,6 +29,11 @@
  * values of the main party leader. If they have full HP, the maximum number
  * of hearts will be shown, and it will reduce as they lose hp. 
  * 
+ * NOTE: 
+ * You require an image for this system to work. I have given a edited a 
+ * heart image for use with this system (icon made by Avery).
+ * This image should be placed within the img/system folder of your project.
+ * 
  * ============================================================================
  * ■ Script Calls:
  * ============================================================================
