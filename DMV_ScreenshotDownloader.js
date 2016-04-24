@@ -146,7 +146,7 @@ function ScreenshotDownloader() {
   $.screenshotKeyPressed = function() {
     try {
       if (!Utils.isNwjs()){
-        $.downloadScreenshot(getFilename(), getImageData());
+        $.downloadScreenshot($.getFilename(),$.getImageData());
       };
     } catch(error) {
       if (error !== undefined && error !== null) {
