@@ -22,11 +22,6 @@
 * Please note, most of this plugins options and customization resides within
 * the plugin code itself. 
 * 
-* The information within this sort help section is dedicated mainly to the 
-* Event Command 'Plugin Commands'. 
-* 
-* Plugin commands are as follows; 
-* 
 * highscore view LISTNAME
 * highscore add LISTNAME
 * 
@@ -80,8 +75,10 @@
 * ■ Plugin Commands:
 * ============================================================================
 * 
-*  ... N/A
-* 
+* highscore view LISTNAME
+* highscore add LISTNAME
+* view or add a highscore to LISTNAME, where LISTNAME is a valid identifier
+* for one of your defined highscore lists. ex: Test, DefaultList1, ...
 * 
 * ============================================================================
 * ■ Terms && Conditions:
