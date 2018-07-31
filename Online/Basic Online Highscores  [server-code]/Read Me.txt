@@ -1,0 +1,5 @@
+System Author:  David Bow (dekitarpg @ gmail.com)
+
+This system is intended to be used with my basic online highscores system for mv. I personally no longer use this system; therefore, it will no longer be maintained. 
+
+I recommend you visit dekitarpg.com/dmv for my latest plugins. <3
