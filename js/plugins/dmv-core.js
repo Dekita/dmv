@@ -2,7 +2,7 @@
 * ############################################################################
 * 
 * Plug-in: dmv-core.js
-* Version: 2.0.0
+* Version: 2.0.1
 * Author: DekitaRPG [ www.dekitarpg.com ]
 * MailTo: dekitarpg@gmail.com
 * 
@@ -63,6 +63,8 @@
 * ■ Change Log:
 * ============================================================================
 * 
+* v.2.0.1 - Added DMV.Emitter class, 
+*         - Added DMV.HTTP basic error and timeout features,
 * v.2.0.0 - Rewrote using es6 features, 
 *         - Dropped MVC Requirement,
 * v.1.0.1 - Added Function: DMV.isScene(sceneClass),
@@ -81,7 +83,7 @@ const DMV = Object.create(Object);
     * DMV.version
     * returns the overall version number for the DMV Plugins engine.
     */
-    dmv_kore.version = '2.0.0';
+    dmv_kore.version = '2.0.1';
     
     /**
     * DMV.author
@@ -437,7 +439,15 @@ const DMV = Object.create(Object);
     * @return the current scenes spriteset if available.
     */
     dmv_kore.reader(dmv_kore, 'current_spriteset', function(){
-        return SceneManager._scene ? SceneManager._scene._spriteset : null;
+        return this.current_scene ? this.current_scene._spriteset : null;
+    });
+
+    /**
+    * dmv_kore.current_scene
+    * @return the current scene if available.
+    */
+    dmv_kore.reader(dmv_kore, 'current_scene', function(){
+        return SceneManager._scene ? SceneManager._scene : null;
     });
 
     /**
@@ -470,10 +480,10 @@ const DMV = Object.create(Object);
         return {};
     });
     dmv_kore.reader(Game_Actor.prototype,'meta',function(){
-        return this.actor() ? this.actor().meta : {};
+        return this.actor ? this.actor().meta : {};
     });
     dmv_kore.reader(Game_Enemy.prototype,'meta',function(){
-        return this.enemy() ? this.enemy().meta : {};
+        return this.enemy ? this.enemy().meta : {};
     });
 
     /**\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -515,6 +525,12 @@ const DMV = Object.create(Object);
                     cbk.apply(thisobj, [request.responseText]);
                 }
             };
+            request.ontimeout = function() {
+                cbk.apply(thisobj, ['timeout']);
+            };
+            request.onerror = function(error) {
+                cbk.apply(thisobj, ['error', error]);
+            };
             return request;
         }
 
@@ -528,7 +544,7 @@ const DMV = Object.create(Object);
         http.getAsync = function(url, str, cbk, obj){
             let request = aSyncRequest(cbk, obj);
             request.open("GET", url, true); 
-            request.send(str);
+            this._sendRequest(request, str);
         };
 
         /**
@@ -542,8 +558,19 @@ const DMV = Object.create(Object);
             let request = aSyncRequest(cbk, obj);
             request.open("POST", url, true); 
             request.setRequestHeader("Content-type", http.FORM_ENCODE);
-            request.send(str);
+            this._sendRequest(request, str);
         };
+
+        /**
+        * DMV.HTTP._sendRequest(url, str, cbk)
+        * @param request XMLHttpRequest object
+        * @param string string to pass with url call
+        */
+        http._sendRequest = function(request, string){
+            request.timeout = 5000;
+            request.send(string);
+        };
+
         /**
         * End HTTP Declarations
         */
@@ -586,6 +613,12 @@ const DMV = Object.create(Object);
     dmv_kore.Scene  = function() {
         throw new Error('DMV.Scene'+dmv_kore.STATIC_CLASS_ERROR)
     };
+
+    /**
+    * DMV.Emitter
+    * Basic clone of PIXI.utils.EventEmitter
+    */
+    dmv_kore.Emitter = dmv_kore.createClass(PIXI.utils.EventEmitter);
 
     /**
     * DMV.Sprite.TogButton

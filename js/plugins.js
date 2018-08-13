@@ -19,5 +19,6 @@ var $plugins =
 {"name":"dmv-stat_willpower","status":true,"description":"Creates new stats: will, and willrt. (willpower & rate)\nSee Help for more information--","parameters":{"Default Will Funk":"(this.willrt/2)+(this.will/1000)"}},
 {"name":"dmv-timer_wait_for_event","status":true,"description":"This plugin allows the game timer to wait for events.","parameters":{"Default Wait":"true"}},
 {"name":"dmv-zelda_hud","status":true,"description":"This plugin simply creates a small HP HUD inspired by Zelda.","parameters":{"Heart Image":"ZeldaHeart by Avery","Heart Scale":"0.35","HUD Position":"0, 0","Init Shown":"3","Min Shown":"3","Max Shown":"9"}},
-{"name":"dmv-online_highscores","status":true,"description":"This plugin allows for customizable highscore lists to be \r\nshown within your RPG Maker Mv Project.","parameters":{}}
+{"name":"dmv-online_highscores","status":true,"description":"This plugin allows for customizable highscore lists to be \r\nshown within your RPG Maker Mv Project.","parameters":{}},
+{"name":"dmv-online_checker","status":true,"description":"Simply checks to ensure that the game has internet connection\r\nwhen internet is lost, a screen pops up to advise the player.","parameters":{"stop-map-if-offline":"true","stop-scene-if-offline":"true","offline-splash-image":"img/system/lost-connection.png","do-ping":"false","ping-ip":"http://localhost:8080/ping","ping-freq":"60 \r"}}
 ];

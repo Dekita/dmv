@@ -2,7 +2,7 @@
 * ############################################################################
 * 
 * Plug-in: dmv-base.js
-* Version: 2.0.0
+* Version: 1.0.0
 * Author: DekitaRPG [ www.dekitarpg.com ]
 * MailTo: dekitarpg@gmail.com
 * 
@@ -61,7 +61,6 @@
 * ■ Change Log:
 * ============================================================================
 * 
-* v.2.0.0 - Rewrote using es6 features, 
 * v.1.0.0 - Initial Release,
 * 
 * 
@@ -86,13 +85,13 @@
     * used by various aspects of the system.
     */
     const PLUGIN_NAME = "base";
-    const PLUGIN_VERSION = "2.0.0";
+    const PLUGIN_VERSION = "1.0.0";
 
     /**
     * Checks for DMV Core plugin and register if available
     */
     if (typeof DMV === 'undefined') {
-        let LOAD_ERROR = "Oh No! A Plugin Hasnt Loaded!!\n\n";
+        let LOAD_ERROR = "Oh No! A Plugin Hasn't Loaded!!\n\n";
         LOAD_ERROR += "You need to install dmv-core.js to use:\n";
         LOAD_ERROR += `dmv-${PLUGIN_NAME}.js\n\n`;
         LOAD_ERROR += "Ensure you have dmv-core.js loaded before other dmv plugins!\n";
