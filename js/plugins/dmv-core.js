@@ -480,10 +480,10 @@ const DMV = Object.create(Object);
         return {};
     });
     dmv_kore.reader(Game_Actor.prototype,'meta',function(){
-        return this.actor ? this.actor().meta : {};
+        return this.actor() ? this.actor().meta : {};
     });
     dmv_kore.reader(Game_Enemy.prototype,'meta',function(){
-        return this.enemy ? this.enemy().meta : {};
+        return this.enemy() ? this.enemy().meta : {};
     });
 
     /**\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
